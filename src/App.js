@@ -22,16 +22,18 @@ function App() {
                     }}
                     onInit={(typewriter) => {
                         typewriter
+                            .pauseFor(1000)
                             .typeString("Hello, ")
                             .pauseFor(1000)
                             .typeString("my name is Steven.")
-                            .pauseFor(500)
+                            .pauseFor(1000)
                             .typeString("<br />")
                             .typeString("I am a management consultant")
                             .pauseFor(200)
-                            .typeString(" with experience")
                             .typeString("<br />")
-                            .typeString("across federal and state governments.")
+                            .typeString(" with experience across")
+                            .typeString("<br />")
+                            .typeString("federal and state governments.")
                             .pauseFor(2000)
                             .typeString("<br />")
                             .pauseFor(50)
