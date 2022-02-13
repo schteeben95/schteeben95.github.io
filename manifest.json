@@ -1,0 +1,9 @@
+{
+    "short_name": "Hello",
+    "name": "Steven X. Han - Management Consultant",
+    "icons": [],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+}
