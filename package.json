@@ -23,7 +23,7 @@
     },
     "scripts": {
         "predeploy": "yarn build",
-        "deploy": "gh-pages -b master -d build",
+        "deploy": "echo 'stevenhan.net' > ./build/CNAME && gh-pages -b master -d build",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
