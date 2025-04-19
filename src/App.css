@@ -27,4 +27,5 @@ a:visited {
 .intro-text {
   font-size: larger;
   font-family: "Source Sans Pro", sans-serif;
+  margin-bottom: 0;
 }

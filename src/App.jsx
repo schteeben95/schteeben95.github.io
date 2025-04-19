@@ -8,6 +8,20 @@ import "./App.css";
 
 import TextFlipAnimation from "./TextFlipAnimation";
 
+const roles = [
+  "🧑‍💻 Technology Consultant",
+  "🏘️ NFP Board Member",
+  "📀 Data Specialist",
+  "🥷 Cyber Enthusiast",
+  "🚑 First Responder",
+  "🧱 Solutions Architect",
+  "🐶 Dog Dad",
+  "🏃 Runner",
+]
+  .map((value) => ({ value, sort: Math.random() }))
+  .sort((a, b) => a.sort - b.sort)
+  .map(({ value }) => value)
+
 function App() {
   const TypingEffect = () => {
     const [showIcons, setShowIcons] = useState(false);
@@ -16,28 +30,17 @@ function App() {
       <>
         <p className="intro-text">Hello, my name is Steven</p>
         <br />
-        <motion.p
-          className="intro-text"
-          layout  // This will animate the layout change when the text length changes
-          // transition={{ type: "inertia" }} // Adjust spring settings for smoothness
-        >
-          I'm a
+        <div className="d-flex align-items-center mb-2">
+          <p
+            className="intro-text"
+          >
+            I'm a
+          </p>
           <TextFlipAnimation
-            texts={[
-              "🧑‍💻 Technology Consultant",
-              "🏘️ NFP Board Member",
-              "📀 Data Specialist",
-              "🚑 First Responder",
-              "🧱 Solutions Architect",
-              "🐶 Dog Dad",
-              "🏃 Runner",
-            ]
-              .map((value) => ({ value, sort: Math.random() }))
-              .sort((a, b) => a.sort - b.sort)
-              .map(({ value }) => value)}
-            interval={4000}
+            texts={roles}
+            interval={5000}
           />
-        </motion.p>
+        </div>
         <Typewriter
           options={{
             loop: false,
