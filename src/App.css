@@ -13,10 +13,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 .contact-icons-ctr {
   margin-top: 15px;
   display: flex;
@@ -32,11 +28,3 @@ a:visited {
   font-size: larger;
   font-family: "Source Sans Pro", sans-serif;
 }
-
-.Typewriter__wrapper {
-  font-size: larger;
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-
-/* For react-spring version, no additional CSS needed */

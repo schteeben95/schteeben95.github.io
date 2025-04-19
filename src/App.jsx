@@ -1,8 +1,8 @@
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion } from "motion/react";
 import Typewriter from "typewriter-effect";
 import "./App.css";
 
@@ -16,8 +16,10 @@ function App() {
       <>
         <p className="intro-text">Hello, my name is Steven</p>
         <br />
-        <p
+        <motion.p
           className="intro-text"
+          layout  // This will animate the layout change when the text length changes
+          // transition={{ type: "inertia" }} // Adjust spring settings for smoothness
         >
           I'm a
           <TextFlipAnimation
@@ -26,7 +28,7 @@ function App() {
               "🏘️ NFP Board Member",
               "📀 Data Specialist",
               "🚑 First Responder",
-              "🕋 Solutions Architect",
+              "🧱 Solutions Architect",
               "🐶 Dog Dad",
               "🏃 Runner",
             ]
@@ -35,7 +37,7 @@ function App() {
               .map(({ value }) => value)}
             interval={4000}
           />
-        </p>
+        </motion.p>
         <Typewriter
           options={{
             loop: false,
