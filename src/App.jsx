@@ -20,27 +20,14 @@ const roles = [
 ]
   .map((value) => ({ value, sort: Math.random() }))
   .sort((a, b) => a.sort - b.sort)
-  .map(({ value }) => value)
+  .map(({ value }) => value);
 
 function App() {
-  const TypingEffect = () => {
-    const [showIcons, setShowIcons] = useState(false);
+  const [showIcons, setShowIcons] = useState(false);
 
+  const TypingEffect = () => {
     return (
       <>
-        <p className="intro-text">Hello, my name is Steven</p>
-        <br />
-        <div className="d-flex align-items-center mb-2">
-          <p
-            className="intro-text"
-          >
-            I'm a
-          </p>
-          <TextFlipAnimation
-            texts={roles}
-            interval={5000}
-          />
-        </div>
         <Typewriter
           options={{
             loop: false,
@@ -70,6 +57,20 @@ function App() {
               .start();
           }}
         />
+      </>
+    );
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p className="intro-text">Hello, my name is Steven</p>
+        <br />
+        <div className="d-flex align-items-center mb-2">
+          <p className="intro-text">I'm a</p>
+          <TextFlipAnimation texts={roles} interval={5000} />
+        </div>
+        <TypingEffect />
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: showIcons ? 1 : 0 }}
@@ -91,14 +92,6 @@ function App() {
             </a>
           </div>
         </motion.div>
-      </>
-    );
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <TypingEffect />
       </header>
     </div>
   );
