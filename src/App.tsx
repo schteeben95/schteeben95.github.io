@@ -1,15 +1,14 @@
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion"; // corrected import
+import { JSX, useEffect, useRef, useState } from "react";
+import TextFlipAnimation from "./TextFlipAnimation";
 import TypingEffect from "./TypingEffect";
 
 import "./App.css";
 
-import TextFlipAnimation from "./TextFlipAnimation";
-
-const roles = [
+const roles: string[] = [
   "🧑‍💻 Technology Consultant",
   "🏘️ NFP Board Member",
   "📀 Data Specialist",
@@ -23,20 +22,20 @@ const roles = [
   .sort((a, b) => a.sort - b.sort)
   .map(({ value }) => value);
 
-function App() {
-  const [showIcons, setShowIcons] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+function App(): JSX.Element {
+  const [showIcons, setShowIcons] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         menuRef.current &&
-        !menuRef.current.contains(event.target) &&
+        !menuRef.current.contains(event.target as Node) &&
         buttonRef.current &&
-        !buttonRef.current.contains(event.target)
+        !buttonRef.current.contains(event.target as Node)
       ) {
         setMenuOpen(false);
       }
