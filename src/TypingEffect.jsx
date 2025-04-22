@@ -13,7 +13,7 @@ const TypingEffect = ({setShowIcons}) => {
               .pauseFor(1000)
               .typeString("I'm here to discover and understand")
               .typeString("<br />")
-              .typeString("all the <i>wonderful</i> things in life.")
+              .typeString("all the <i class='wonderful-text'>wonderful</i> things in life.")
               .pauseFor(2000)
               .typeString("<br />")
               .pauseFor(50)

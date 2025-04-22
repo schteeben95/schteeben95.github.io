@@ -74,3 +74,30 @@ a:visited {
   transform: scale(1.05); /* subtle zoom */
 }
 
+.wonderful-text {
+  font-weight: bold;
+  background: linear-gradient(
+    90deg,
+    #ff7eb3,
+    #ff758c,
+    #ffb199,
+    #ffd3a5,
+    #ff7eb3
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite reverse;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
