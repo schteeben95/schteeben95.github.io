@@ -84,7 +84,7 @@ function App(): JSX.Element {
         <br />
         <div className="d-flex align-items-center mb-2">
           <p className="intro-text">I'm a</p>
-          <TextFlipAnimation texts={roles} interval={4000} />
+          <TextFlipAnimation texts={roles} interval={3000} />
         </div>
         <TypingEffect setShowIcons={setShowIcons} />
         <motion.div
