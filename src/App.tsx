@@ -72,9 +72,25 @@ function App(): JSX.Element {
                   href="https://airgap-express.vercel.app/"
                   rel="noreferrer"
                   target="_blank"
-                  title="Peek at some cool stuff I've built"
+                  title="Transfer files across devices without a network connection!"
                 >
                   AirGap Express
+                </a>
+                <a
+                  href="https://keymaker-iota.vercel.app/"
+                  rel="noreferrer"
+                  target="_blank"
+                  title="Checks if your private key has been compromised."
+                >
+                  Keymaker
+                </a>
+                <a
+                  href="https://urinal-algorithm.vercel.app/"
+                  rel="noreferrer"
+                  target="_blank"
+                  title="Simulates optimal urinal selection."
+                >
+                  The Urinal Algorithm
                 </a>
               </motion.div>
             )}

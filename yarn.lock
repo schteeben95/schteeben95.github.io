@@ -7997,6 +7997,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-microsoft-clarity@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-microsoft-clarity/-/react-microsoft-clarity-2.0.0.tgz#902d2a05139b9f42d0a1a6963d2c83ef085866ad"
+  integrity sha512-Hnbmiv+/vHSekS+Diho7SzvigNLNm+wayZMhxS4otaxPBlN3ccpY7k+PJd2Ytg3F6umU3JZzFtLzvK1WmfdhpA==
+
 react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
