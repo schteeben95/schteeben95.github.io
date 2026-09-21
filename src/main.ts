@@ -1,9 +1,12 @@
+import { inject } from "@vercel/analytics";
+
 /**
  * Progressive enhancement for stevenhan.net.
  *
  * The page is fully authored in index.html and revealed with pure-CSS
  * animations, so it renders and reads correctly with no JavaScript at all.
- * This module only adds the cycling role flipper on top of the static content.
+ * Beyond Vercel Web Analytics, this module adds the cycling role flipper and
+ * the "wonderful" click easter egg on top of the static content.
  *
  * Accessibility: the flipper opts out entirely under prefers-reduced-motion,
  * and otherwise pauses on hover, on keyboard focus within the hero, and while
@@ -11,6 +14,9 @@
  * dropped `transitionend` (e.g. a backgrounded tab) via a timeout fallback and
  * a re-entrancy guard, so it can never wedge on a blank role.
  */
+
+// Vercel Web Analytics: page views + web vitals (no-op when not on Vercel).
+inject();
 
 const ROLES = [
   "Solutions Architect",

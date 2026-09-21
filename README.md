@@ -20,13 +20,8 @@ npm run preview    # preview the production build
 
 ## Deploy
 
-Pushes to `main` are built and published to the `gh-pages` branch automatically by
-[GitHub Actions](.github/workflows/deploy.yml), served at
-[stevenhan.net](https://stevenhan.net) via the `CNAME`. To publish manually:
-
-```bash
-npm run deploy
-```
+Hosted on **Vercel**. Every push to `main` deploys automatically (Vite preset; see
+`vercel.json`), served at [stevenhan.net](https://stevenhan.net).
 
 ## Working on this repo?
 

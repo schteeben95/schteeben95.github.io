@@ -16,7 +16,8 @@ and no client-side router.
 - One small progressive-enhancement script, `src/main.ts` (the role flipper). The page
   is fully readable with JavaScript disabled.
 - Fonts: Space Grotesk / Instrument Sans / Newsreader via Google Fonts.
-- Analytics: Google Analytics + Microsoft Clarity (snippets in `index.html`).
+- Analytics: Google Analytics + Microsoft Clarity (snippets in `index.html`), plus
+  Vercel Web Analytics (`inject()` in `src/main.ts`).
 
 ## Layout
 
@@ -30,8 +31,7 @@ public/               # copied verbatim to the site root at build time
   sitemap.xml
   site.webmanifest
   favicon.svg, favicon.ico, icon-192.png, icon-512.png, apple-touch-icon.png, og-image.png
-  CNAME               # stevenhan.net (custom domain)
-.github/workflows/deploy.yml   # builds and publishes to the gh-pages branch on push to main
+vercel.json           # Vercel build/output + caching & security headers
 ```
 
 ## Commands
@@ -40,7 +40,6 @@ public/               # copied verbatim to the site root at build time
 - `npm run dev` - local dev server.
 - `npm run build` - type-check (`tsc --noEmit`) then build to `dist/`.
 - `npm run preview` - preview the production build.
-- `npm run deploy` - manual publish of `dist/` to the `gh-pages` branch (CI does this automatically).
 
 ## Conventions
 
@@ -56,5 +55,5 @@ public/               # copied verbatim to the site root at build time
   `.sr-only` fallback sentence in `index.html`.
 - Keep the two structured-data blocks in `index.html` (Person + ItemList) and
   `public/llms.txt` in sync with the visible content.
-- Deploy targets the **`gh-pages` branch** (built artifacts). Source lives on **`main`**.
-  Do not commit to `gh-pages` by hand.
+- **Hosted on Vercel.** Every push to `main` auto-deploys (Vite preset via `vercel.json`);
+  there is no build/deploy branch to manage.
