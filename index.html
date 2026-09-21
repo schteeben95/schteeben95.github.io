@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" style="color-scheme: dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Steven X. Han - Solutions Architect in Melbourne</title>
+    <meta
+      name="description"
+      content="Steven X. Han - a solutions architect working across data, cloud and cyber security. NFP board member, volunteer first responder, dog dad, and runner. Based in Melbourne, Australia."
+    />
+    <link rel="canonical" href="https://stevenhan.net/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Steven X. Han" />
+    <meta name="theme-color" content="#17140f" />
+
+    <!-- Critical, framework-free background so the first paint is already dark -->
+    <style>
+      html { background: #17140f; }
+      body { margin: 0; }
+    </style>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Steven X. Han" />
+    <meta property="og:title" content="Steven X. Han - Solutions Architect" />
+    <meta
+      property="og:description"
+      content="Solutions architect across data, cloud and cyber security. Here to learn about all the wonderful things in life."
+    />
+    <meta property="og:url" content="https://stevenhan.net/" />
+    <meta property="og:image" content="https://stevenhan.net/og-image.png" />
+    <meta property="og:image:alt" content="Steven X. Han - Solutions Architect, Melbourne" />
+    <meta property="og:locale" content="en_AU" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Steven X. Han - Solutions Architect" />
+    <meta
+      name="twitter:description"
+      content="Solutions architect across data, cloud and cyber security. Here to learn about all the wonderful things in life."
+    />
+    <meta name="twitter:image" content="https://stevenhan.net/og-image.png" />
+
+    <!-- Icons + PWA -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Point AI agents / LLMs at the machine-readable profile -->
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="llms.txt" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/styles.css" />
+
+    <!-- Structured data: who Steven is (for AI agents + search engines) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Steven X. Han",
+        "givenName": "Steven",
+        "familyName": "Han",
+        "url": "https://stevenhan.net",
+        "jobTitle": "Solutions Architect",
+        "description": "Solutions architect working across data, cloud and cyber security. NFP board member, volunteer first responder, dog dad, and runner.",
+        "email": "mailto:steven@stevenhan.net",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Melbourne",
+          "addressRegion": "VIC",
+          "addressCountry": "AU"
+        },
+        "knowsAbout": [
+          "Solutions Architecture",
+          "Data",
+          "Cloud",
+          "Cyber Security"
+        ],
+        "sameAs": ["https://www.linkedin.com/in/stevenxhan/"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Selected experiments by Steven X. Han",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "AirGap Express",
+              "url": "https://airgap-express.vercel.app/",
+              "description": "Transfer files across devices with no network connection.",
+              "applicationCategory": "UtilitiesApplication",
+              "operatingSystem": "Web",
+              "author": { "@type": "Person", "name": "Steven X. Han" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Keymaker",
+              "url": "https://keymaker-iota.vercel.app/",
+              "description": "Check whether your private key has been compromised.",
+              "applicationCategory": "SecurityApplication",
+              "operatingSystem": "Web",
+              "author": { "@type": "Person", "name": "Steven X. Han" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "The Urinal Algorithm",
+              "url": "https://urinal-algorithm.vercel.app/",
+              "description": "Simulate the optimal urinal selection.",
+              "applicationCategory": "GameApplication",
+              "operatingSystem": "Web",
+              "author": { "@type": "Person", "name": "Steven X. Han" }
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-41ETVM9N9Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-41ETVM9N9Q");
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "upwf6o1tj5");
+    </script>
+  </head>
+
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="stage">
+      <header class="topbar reveal" style="--d: 0ms">
+        <span class="wordmark">Steven X. Han</span>
+        <span class="place">
+          <span class="dot" aria-hidden="true"></span>Melbourne, Australia &middot; 37.81&deg;S
+        </span>
+      </header>
+
+      <main class="hero" id="main">
+        <p class="kicker reveal" style="--d: 80ms">
+          <span class="tick" aria-hidden="true"></span>
+          Curious by default - data, cloud &amp; cyber security.
+        </p>
+
+        <h1 class="hero__title">
+          <span class="lead mask" style="--d: 180ms"><span class="mask__inner">I'm a</span></span>
+          <span class="role mask" style="--d: 300ms">
+            <span class="mask__inner">
+              <span class="flip" aria-hidden="true"><span class="flip__word">Solutions Architect</span></span>
+            </span>
+            <span class="sr-only"
+              >Solutions Architect, Data Specialist, Cyber Enthusiast, First Responder, Dog Dad, and
+              Runner.</span
+            >
+          </span>
+        </h1>
+
+        <p class="tagline mask" style="--d: 440ms">
+          <span class="mask__inner"
+            >Here to learn about all the <em class="wonderful">wonderful</em> things in life.</span
+          >
+        </p>
+
+        <div class="contact reveal" style="--d: 560ms">
+          <span class="contact__label">Get in touch</span>
+          <a
+            class="link"
+            href="https://www.linkedin.com/in/stevenxhan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Steven X. Han on LinkedIn (opens in a new tab)"
+            >LinkedIn<span class="arw" aria-hidden="true">&#8599;</span></a
+          >
+          <span class="sep" aria-hidden="true"></span>
+          <a class="link" href="mailto:steven@stevenhan.net">steven@stevenhan.net</a>
+        </div>
+      </main>
+
+      <section class="experiments reveal" style="--d: 680ms" aria-labelledby="exp-heading">
+        <div class="experiments__head">
+          <h2 id="exp-heading" class="experiments__title">Selected experiments</h2>
+          <p class="experiments__sub">Small tools, built for the fun of it.</p>
+        </div>
+        <ul class="explist">
+          <li>
+            <a
+              class="exp"
+              href="https://airgap-express.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="AirGap Express - transfer files across devices with no network connection (opens in a new tab)"
+            >
+              <span class="exp__idx">01</span>
+              <span class="exp__name">AirGap Express <span class="arw" aria-hidden="true">&#8599;</span></span>
+              <span class="exp__desc">Transfer files across devices with no network connection.</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="exp"
+              href="https://keymaker-iota.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Keymaker - check whether your private key has been compromised (opens in a new tab)"
+            >
+              <span class="exp__idx">02</span>
+              <span class="exp__name">Keymaker <span class="arw" aria-hidden="true">&#8599;</span></span>
+              <span class="exp__desc">Check whether your private key has been compromised.</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="exp"
+              href="https://urinal-algorithm.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="The Urinal Algorithm - simulate the optimal urinal selection (opens in a new tab)"
+            >
+              <span class="exp__idx">03</span>
+              <span class="exp__name">The Urinal Algorithm <span class="arw" aria-hidden="true">&#8599;</span></span>
+              <span class="exp__desc">Simulate the optimal urinal selection.</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
