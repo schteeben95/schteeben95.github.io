@@ -85,3 +85,54 @@ function initRoleFlipper(): void {
 }
 
 initRoleFlipper();
+
+/**
+ * Easter egg on the tagline's "wonderful":
+ * - every click sends a wavefront across the page (expanding rings + a content
+ *   ripple where each block lifts and settles, staggered by distance)
+ * - the 10th click turns the word into a pulsing rainbow
+ * Motion is skipped under prefers-reduced-motion; the rainbow still appears (static).
+ */
+function initWonderfulEasterEgg(): void {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const word = document.querySelector<HTMLElement>(".tagline .wonderful");
+  const layer = document.querySelector<HTMLElement>(".ripple-fx");
+  if (!word || !layer) return;
+
+  const WAVE_SELECTOR =
+    ".wordmark, .place, .kicker, .hero__title, .tagline, .contact, .experiments__head, .exp";
+  const RAINBOW_AT = 10;
+  let clicks = 0;
+
+  const fireRipple = (x: number, y: number, rings: number): void => {
+    const diameter = Math.max(window.innerWidth, window.innerHeight) * 2.6;
+    for (let i = 0; i < rings; i++) {
+      const ring = document.createElement("span");
+      ring.className = "ripple-ring";
+      ring.style.width = `${diameter}px`;
+      ring.style.height = `${diameter}px`;
+      ring.style.left = `${x}px`;
+      ring.style.top = `${y}px`;
+      ring.style.animationDelay = `${i * 150}ms`;
+      ring.addEventListener("animationend", () => ring.remove());
+      layer.appendChild(ring);
+    }
+
+    document.querySelectorAll<HTMLElement>(WAVE_SELECTOR).forEach((el) => {
+      const r = el.getBoundingClientRect();
+      const dist = Math.hypot(r.left + r.width / 2 - x, r.top + r.height / 2 - y);
+      const delay = Math.min(dist / 1.7, 900);
+      el.style.animation = "none";
+      void el.offsetWidth; // restart cleanly if the wave is still running
+      el.style.animation = `rippleHit 620ms cubic-bezier(0.22, 0.61, 0.24, 1) ${delay}ms`;
+    });
+  };
+
+  word.addEventListener("click", (event) => {
+    clicks += 1;
+    if (!reduce.matches) fireRipple(event.clientX, event.clientY, clicks === RAINBOW_AT ? 3 : 2);
+    if (clicks >= RAINBOW_AT) word.classList.add("wonderful--rainbow");
+  });
+}
+
+initWonderfulEasterEgg();
