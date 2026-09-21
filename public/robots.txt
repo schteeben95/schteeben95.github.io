@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
+# All crawlers, including AI agents, are welcome on this personal site.
 User-agent: *
-Disallow:
+Allow: /
+
+# A machine-readable summary for LLMs / AI agents lives here:
+# https://stevenhan.net/llms.txt
+
+Sitemap: https://stevenhan.net/sitemap.xml

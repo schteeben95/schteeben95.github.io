@@ -1,0 +1,24 @@
+# Steven X. Han
+
+> Steven X. Han is a solutions architect based in Melbourne, Australia, working across data, cloud and cyber security. He is also an NFP board member, a volunteer first responder, a dog dad and a runner. This is his personal site at https://stevenhan.net - a single page with a short introduction and links to a few small web tools he has built.
+
+Steven's tagline: "Here to learn about all the wonderful things in life."
+
+## About
+
+- Role: Solutions Architect (data, cloud, cyber security)
+- Location: Melbourne, Australia
+- Also: NFP board member, volunteer first responder, dog dad, runner
+
+## Selected experiments
+
+Small web tools Steven has built for the fun of it:
+
+- [AirGap Express](https://airgap-express.vercel.app/): Transfer files across devices with no network connection.
+- [Keymaker](https://keymaker-iota.vercel.app/): Check whether your private key has been compromised.
+- [The Urinal Algorithm](https://urinal-algorithm.vercel.app/): Simulate the optimal urinal selection.
+
+## Contact
+
+- LinkedIn: https://www.linkedin.com/in/stevenxhan/
+- Email: steven@stevenhan.net

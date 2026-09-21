@@ -1,0 +1,459 @@
+:root {
+  /* Palette - near-black warm espresso, warm off-white, one amber accent */
+  --bg-0: hsl(36 26% 3.4%); /* near-black, warm */
+  --bg-1: hsl(34 24% 5%); /* centre wash */
+  --bg-edge: hsl(30 32% 1.6%); /* vignette edge */
+  --ink: hsl(38 44% 89%); /* ~#F0E7D8 warm off-white */
+  --ink-dim: hsl(37 22% 71%); /* ~#C0B4A2 */
+  --ink-faint: hsl(36 15% 55%); /* ~#988C7B */
+  --amber: hsl(36 79% 57%); /* #E8A33D */
+  --amber-soft: hsl(36 79% 57% / 0.16);
+  --hair: hsl(38 20% 82% / 0.13);
+  --hair-strong: hsl(38 20% 82% / 0.24);
+
+  --ease: cubic-bezier(0.2, 0.65, 0.2, 1);
+  --ease-flip: cubic-bezier(0.22, 0.61, 0.24, 1);
+
+  --display: "Space Grotesk", "Familjen Grotesk", "Trebuchet MS", sans-serif;
+  --body: "Instrument Sans", "Helvetica Neue", sans-serif;
+  --editorial: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --pad-x: clamp(1.5rem, 5vw, 5.5rem);
+  --pad-y: clamp(1.6rem, 3.6vw, 3.4rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  font-family: var(--body);
+  color: var(--ink);
+  background: radial-gradient(135% 105% at 14% 6%, var(--bg-1) 0%, var(--bg-0) 44%, var(--bg-edge) 100%);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+/* Subtle cinematic film grain, above the background wash, behind content */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding: var(--pad-y) var(--pad-x);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(1.6rem, 4vw, 3rem);
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.wordmark {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: var(--ink);
+}
+.place {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 4px var(--amber-soft);
+  flex: 0 0 auto;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  align-self: center;
+  max-width: none;
+  width: 100%;
+  padding-block: clamp(1rem, 3vh, 3rem);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: clamp(0.78rem, 1.05vw, 0.9rem);
+  letter-spacing: 0.02em;
+  color: var(--ink-dim);
+  margin: 0 0 clamp(1.4rem, 3vw, 2.4rem);
+}
+.kicker .tick {
+  width: 1.6rem;
+  height: 2px;
+  background: var(--amber);
+  flex: 0 0 auto;
+}
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  margin: 0;
+  font-family: var(--display);
+  line-height: 1.06;
+}
+.lead {
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+  letter-spacing: 0.01em;
+  color: var(--ink-dim);
+}
+.role {
+  font-weight: 600;
+  font-size: clamp(1.4rem, 7vw, 5.25rem);
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+
+/* mask reveal wrapper (page-load) - clips vertically ONLY, never horizontally */
+.mask {
+  display: block;
+  clip-path: inset(0 -100vw);
+  padding: 0.28em 0;
+  margin: -0.28em 0;
+}
+.mask .mask__inner {
+  display: inline-block;
+}
+
+/* the flip loop, nested inside the role's load-reveal mask */
+.flip {
+  display: inline-block;
+  clip-path: inset(0 -100vw);
+  padding: 0.3em 0;
+  margin: -0.3em 0;
+  perspective: 900px;
+  vertical-align: bottom;
+}
+.flip__word {
+  display: inline-block;
+  white-space: nowrap;
+  transform-origin: 50% 0%;
+  backface-visibility: hidden;
+  transform: translateY(0) rotateX(0deg);
+  opacity: 1;
+  transition: transform 0.62s var(--ease-flip), opacity 0.5s var(--ease-flip);
+}
+.flip__word.leaving {
+  transform: translateY(-120%) rotateX(-34deg);
+  opacity: 0;
+}
+.flip__word.entering {
+  transform: translateY(120%) rotateX(34deg);
+  opacity: 0;
+  transition: none;
+}
+
+.tagline {
+  font-family: var(--editorial);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.15rem, 2.3vw, 1.7rem);
+  line-height: 1.4;
+  color: var(--ink-dim);
+  max-width: 46rem;
+  text-wrap: pretty;
+  margin: clamp(1.6rem, 3.5vw, 2.6rem) 0 0;
+}
+.tagline .amp {
+  color: var(--amber);
+}
+.tagline .wonderful {
+  color: var(--amber);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.contact {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  margin-top: clamp(2rem, 4.5vw, 3.4rem);
+}
+.contact__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 0.3rem;
+}
+.link {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28em;
+  padding-bottom: 2px;
+  background: linear-gradient(var(--amber), var(--amber)) left bottom / 0% 1.5px no-repeat;
+  transition: background-size 0.35s var(--ease), color 0.25s var(--ease);
+}
+.link:hover,
+.link:focus-visible {
+  color: var(--amber);
+  background-size: 100% 1.5px;
+}
+.link .arw {
+  font-size: 0.85em;
+  transition: transform 0.3s var(--ease);
+}
+.link:hover .arw {
+  transform: translate(2px, -2px);
+}
+.sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--hair-strong);
+  align-self: center;
+}
+
+/* ---------- experiments ---------- */
+.experiments {
+  border-top: 1px solid var(--hair);
+  padding-top: clamp(1.3rem, 2.6vw, 2rem);
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.8fr) 2.4fr;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  align-items: start;
+  min-width: 0;
+}
+/* grid/flex items default to min-width:auto and refuse to shrink; allow the
+   whole chain to shrink so text wraps instead of overflowing on small screens */
+.stage > *,
+.experiments > *,
+.explist,
+.exp > * {
+  min-width: 0;
+}
+.experiments__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  letter-spacing: 0.005em;
+  margin: 0 0 0.35rem;
+}
+.experiments__sub {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  max-width: 22ch;
+}
+
+.explist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.exp {
+  display: grid;
+  /* fixed name column so every description shares one left edge (each .exp is its
+     own grid, so an auto column would size to each row's own name) */
+  grid-template-columns: 2.2rem 13rem 1fr;
+  align-items: baseline;
+  column-gap: clamp(0.8rem, 1.6vw, 1.4rem);
+  row-gap: 0.15rem;
+  text-decoration: none;
+  color: inherit;
+  padding: clamp(0.7rem, 1.4vw, 0.95rem) 0.35rem;
+  border-top: 1px solid var(--hair);
+  transition: background 0.3s var(--ease);
+}
+.explist li:first-child .exp {
+  border-top: 0;
+}
+.exp:hover {
+  background: hsl(38 20% 82% / 0.04);
+}
+.exp__idx {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  color: var(--amber);
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0.05em;
+}
+.exp__name {
+  font-family: var(--display);
+  font-weight: 500;
+  color: var(--ink);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  min-width: 0;
+}
+.exp__desc {
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.exp__name .arw {
+  color: var(--ink-faint);
+  font-size: 0.72em;
+  margin-left: 0.12em;
+  display: inline-block;
+  transition: transform 0.3s var(--ease), color 0.25s var(--ease);
+}
+.exp:hover .exp__name {
+  color: var(--amber);
+}
+.exp:hover .exp__name .arw {
+  color: var(--amber);
+  transform: translate(2px, -2px);
+}
+
+/* ---------- focus + a11y ---------- */
+a:focus-visible,
+.exp:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.exp:focus-visible {
+  outline-offset: -2px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- page-load orchestration (pure CSS: plays on load, no JS needed) ---------- */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes maskRise {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: none;
+  }
+}
+.reveal {
+  animation: revealUp 0.85s var(--ease) var(--d, 0ms) both;
+}
+.mask .mask__inner {
+  animation: maskRise 0.9s var(--ease) var(--d, 0ms) both;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+  .stage {
+    grid-template-rows: auto auto auto;
+  }
+  .experiments {
+    grid-template-columns: 1fr;
+  }
+  .exp {
+    grid-template-columns: 2rem 1fr;
+    grid-template-areas:
+      "idx name"
+      ".   desc";
+    row-gap: 0.3rem;
+  }
+  .exp__idx {
+    grid-area: idx;
+  }
+  .exp__name {
+    grid-area: name;
+  }
+  .exp__desc {
+    grid-area: desc;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .place {
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+  }
+  .contact {
+    gap: 0.5rem 0.9rem;
+  }
+  .contact__label {
+    flex-basis: 100%;
+    margin: 0 0 0.15rem;
+  }
+  .link {
+    word-break: break-word;
+  }
+}
+
+/* ---------- reduced motion: no orchestrated motion at all ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .mask .mask__inner,
+  .flip__word {
+    animation: none !important;
+    transition: none !important;
+  }
+  .link,
+  .link .arw,
+  .exp,
+  .exp__go .arw {
+    transition: none;
+  }
+  .grain {
+    display: none;
+  }
+}
