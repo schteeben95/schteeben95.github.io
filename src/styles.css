@@ -262,11 +262,10 @@ body {
   display: inline-block;
 }
 
-/* easter egg: 10 clicks turns "wonderful" into a pulsing rainbow */
+/* easter egg: 10 clicks turns "wonderful" into a flowing rainbow */
 .tagline .wonderful--rainbow {
   display: inline-block;
   text-decoration: none;
-  animation: wonderPulse 1.4s ease-in-out infinite;
 }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .tagline .wonderful--rainbow {
@@ -286,7 +285,7 @@ body {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    animation: rainbowFlow 4s linear infinite, wonderPulse 1.4s ease-in-out infinite;
+    animation: rainbowFlow 4s linear infinite;
   }
 }
 @keyframes rainbowFlow {
@@ -295,15 +294,6 @@ body {
   }
   to {
     background-position: 300% 0;
-  }
-}
-@keyframes wonderPulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
   }
 }
 

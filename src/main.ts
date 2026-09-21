@@ -102,8 +102,10 @@ function initWonderfulEasterEgg(): void {
   const CHAR_ROOTS = ".wordmark, .place, .kicker, .lead, .tagline, .experiments__head, .exp, .contact";
   const WAVE_SPEED = 0.6; // px per ms - how fast the wavefront travels across the page
   const RAINBOW_AT = 10;
+  const COOLDOWN_MS = 900; // min gap between waves so they don't stack up
   let clicks = 0;
   let hasSplit = false;
+  let lastWave = 0;
 
   // Wrap words + characters in spans so each character can float on its own.
   // Runs lazily on the first click, keeping the initial DOM clean for SEO and
@@ -195,9 +197,14 @@ function initWonderfulEasterEgg(): void {
 
   word.addEventListener("click", (event) => {
     clicks += 1;
-    if (!reduce.matches) {
+    const isCelebration = clicks === RAINBOW_AT;
+    const now = performance.now();
+    // every click counts toward the rainbow, but a wave only fires once per
+    // cooldown (the rainbow-triggering click always gets its celebratory wave)
+    if (!reduce.matches && (isCelebration || now - lastWave >= COOLDOWN_MS)) {
+      lastWave = now;
       ensureSplit();
-      fireWave(event.clientX, event.clientY, clicks === RAINBOW_AT ? 3 : 2);
+      fireWave(event.clientX, event.clientY, isCelebration ? 3 : 2);
     }
     if (clicks >= RAINBOW_AT) word.classList.add("wonderful--rainbow");
   });
