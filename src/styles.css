@@ -262,23 +262,24 @@ body {
   display: inline-block;
 }
 
-/* easter egg: 10 clicks turns "wonderful" into a flowing rainbow */
+/* easter egg: 3 clicks turns "wonderful" into a flowing rainbow */
 .tagline .wonderful--rainbow {
   display: inline-block;
   text-decoration: none;
 }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .tagline .wonderful--rainbow {
+    /* soft pastel rainbow: low saturation, high lightness */
     background: linear-gradient(
       90deg,
-      hsl(0 90% 66%),
-      hsl(38 95% 60%),
-      hsl(90 70% 55%),
-      hsl(160 70% 50%),
-      hsl(200 85% 62%),
-      hsl(260 82% 70%),
-      hsl(320 82% 66%),
-      hsl(0 90% 66%)
+      hsl(355 68% 81%),
+      hsl(28 70% 80%),
+      hsl(48 58% 80%),
+      hsl(140 40% 78%),
+      hsl(200 56% 81%),
+      hsl(248 50% 83%),
+      hsl(310 50% 83%),
+      hsl(355 68% 81%)
     );
     background-size: 300% 100%;
     -webkit-background-clip: text;
