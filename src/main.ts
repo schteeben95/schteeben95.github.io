@@ -99,38 +99,106 @@ function initWonderfulEasterEgg(): void {
   const layer = document.querySelector<HTMLElement>(".ripple-fx");
   if (!word || !layer) return;
 
-  const WAVE_SELECTOR =
-    ".wordmark, .place, .kicker, .hero__title, .tagline, .contact, .experiments__head, .exp";
+  const CHAR_ROOTS = ".wordmark, .place, .kicker, .lead, .tagline, .experiments__head, .exp, .contact";
+  const WAVE_SPEED = 0.6; // px per ms - how fast the wavefront travels across the page
   const RAINBOW_AT = 10;
   let clicks = 0;
+  let hasSplit = false;
 
-  const fireRipple = (x: number, y: number, rings: number): void => {
-    const diameter = Math.max(window.innerWidth, window.innerHeight) * 2.6;
+  // Wrap words + characters in spans so each character can float on its own.
+  // Runs lazily on the first click, keeping the initial DOM clean for SEO and
+  // screen readers (which never trigger it).
+  const splitEl = (root: Element): void => {
+    Array.from(root.childNodes).forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent ?? "";
+        if (!text.trim()) return;
+        // Wrap the whole run in one inline box, so inside flex/grid parents the
+        // words don't each become a separately-gapped flex item.
+        const line = document.createElement("span");
+        line.className = "wv-line";
+        text.split(/(\s+)/).forEach((part) => {
+          if (part === "") return;
+          if (/^\s+$/.test(part)) {
+            line.appendChild(document.createTextNode(part));
+            return;
+          }
+          const wordSpan = document.createElement("span");
+          wordSpan.className = "wv-word";
+          for (const ch of part) {
+            const charSpan = document.createElement("span");
+            charSpan.className = "wv-char";
+            charSpan.textContent = ch;
+            wordSpan.appendChild(charSpan);
+          }
+          line.appendChild(wordSpan);
+        });
+        root.replaceChild(line, node);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as Element;
+        if (el.getAttribute("aria-hidden") === "true") return; // leave decorative marks alone
+        if (el.classList.contains("wonderful")) {
+          el.classList.add("wv-char"); // float as one unit so the rainbow stays intact
+          return;
+        }
+        splitEl(el);
+      }
+    });
+  };
+
+  const ensureSplit = (): void => {
+    if (hasSplit) return;
+    hasSplit = true;
+    document.querySelectorAll(CHAR_ROOTS).forEach(splitEl);
+  };
+
+  const fireWave = (x: number, y: number, rings: number): void => {
+    const rMax = Math.hypot(window.innerWidth, window.innerHeight);
+    const size = 2.5 * rMax; // ring band sits at 80% radius -> reaches rMax at scale 1
+    const ringDuration = rMax / WAVE_SPEED;
+
     for (let i = 0; i < rings; i++) {
       const ring = document.createElement("span");
       ring.className = "ripple-ring";
-      ring.style.width = `${diameter}px`;
-      ring.style.height = `${diameter}px`;
+      ring.style.width = `${size}px`;
+      ring.style.height = `${size}px`;
       ring.style.left = `${x}px`;
       ring.style.top = `${y}px`;
-      ring.style.animationDelay = `${i * 150}ms`;
+      ring.style.animationDuration = `${ringDuration}ms`;
+      ring.style.animationDelay = `${i * 260}ms`;
       ring.addEventListener("animationend", () => ring.remove());
       layer.appendChild(ring);
     }
 
-    document.querySelectorAll<HTMLElement>(WAVE_SELECTOR).forEach((el) => {
+    // Float each character as the wavefront reaches it (delay = distance / speed).
+    const targets = Array.from(document.querySelectorAll<HTMLElement>(".wv-char"));
+    const role = document.querySelector<HTMLElement>(".role");
+    if (role) targets.push(role); // the flip word is dynamic, so float it as a whole
+
+    // read all positions first, then animate, to avoid layout thrash
+    const plan = targets.map((el) => {
       const r = el.getBoundingClientRect();
       const dist = Math.hypot(r.left + r.width / 2 - x, r.top + r.height / 2 - y);
-      const delay = Math.min(dist / 1.7, 900);
-      el.style.animation = "none";
-      void el.offsetWidth; // restart cleanly if the wave is still running
-      el.style.animation = `rippleHit 620ms cubic-bezier(0.22, 0.61, 0.24, 1) ${delay}ms`;
+      return { el, delay: dist / WAVE_SPEED };
+    });
+    plan.forEach(({ el, delay }) => {
+      el.animate(
+        [
+          { transform: "translateY(0)" },
+          { transform: "translateY(-11px)", offset: 0.32 },
+          { transform: "translateY(0)" },
+        ],
+        { duration: 760, delay, easing: "ease-in-out" }
+      );
     });
   };
 
   word.addEventListener("click", (event) => {
     clicks += 1;
-    if (!reduce.matches) fireRipple(event.clientX, event.clientY, clicks === RAINBOW_AT ? 3 : 2);
+    if (!reduce.matches) {
+      ensureSplit();
+      fireWave(event.clientX, event.clientY, clicks === RAINBOW_AT ? 3 : 2);
+    }
     if (clicks >= RAINBOW_AT) word.classList.add("wonderful--rainbow");
   });
 }
