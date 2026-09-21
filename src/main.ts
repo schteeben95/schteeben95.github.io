@@ -108,7 +108,7 @@ function initWonderfulEasterEgg(): void {
   const CHAR_ROOTS = ".wordmark, .place, .kicker, .lead, .tagline, .experiments__head, .exp, .contact";
   const WAVE_SPEED = 0.6; // px per ms - how fast the wavefront travels across the page
   const RAINBOW_AT = 3;
-  const COOLDOWN_MS = 300; // min gap between waves so they don't stack up
+  const COOLDOWN_MS = 900; // min gap between waves so they don't stack up
   let clicks = 0;
   let hasSplit = false;
   let lastWave = 0;
