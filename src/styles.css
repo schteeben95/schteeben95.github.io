@@ -329,8 +329,14 @@ body {
   color: var(--amber);
   background-size: 100% 1.5px;
 }
+.arw {
+  display: inline-block;
+  width: 0.82em;
+  height: 0.82em;
+  vertical-align: -0.08em;
+  flex: none;
+}
 .link .arw {
-  font-size: 0.85em;
   transition: transform 0.3s var(--ease);
 }
 .link:hover .arw {
@@ -425,9 +431,7 @@ body {
 }
 .exp__name .arw {
   color: var(--ink-faint);
-  font-size: 0.72em;
-  margin-left: 0.12em;
-  display: inline-block;
+  margin-left: 0.14em;
   transition: transform 0.3s var(--ease), color 0.25s var(--ease);
 }
 .exp:hover .exp__name {
